@@ -42,10 +42,20 @@ def find_thumbnails(z: zipfile.ZipFile) -> list[str]:
 
 def main() -> int:
     p = argparse.ArgumentParser(description="Affiche l'image contenue dans un fichier 3MF.")
-    p.add_argument("fichier", help="chemin du fichier .3mf")
+    p.add_argument("fichier", nargs="?", help="chemin du fichier .3mf (sinon une fenêtre de choix s'ouvre)")
     p.add_argument("-o", "--output", help="enregistre l'image dans ce fichier au lieu de l'afficher")
     p.add_argument("-l", "--list", action="store_true", help="liste toutes les images trouvées")
     args = p.parse_args()
+
+    if not args.fichier:  # double-clic sur l'exe : on demande le fichier
+        import tkinter as tk
+        from tkinter import filedialog
+        tk.Tk().withdraw()
+        args.fichier = filedialog.askopenfilename(
+            title="Choisir un fichier 3MF", filetypes=[("Fichiers 3MF", "*.3mf")]
+        )
+        if not args.fichier:
+            return 0
 
     try:
         z = zipfile.ZipFile(args.fichier)

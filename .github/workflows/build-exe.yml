@@ -1,0 +1,19 @@
+name: Build Windows exe
+on:
+  push:
+    branches: [show_3mf]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow pyinstaller
+      - run: pyinstaller --onefile --name show_3mf show_3mf.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: show_3mf-windows
+          path: dist/show_3mf.exe
