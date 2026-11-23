@@ -114,12 +114,36 @@ def model2():
     plate = ext(outline, 0, T)
     return union(plate, ext(relief, T-0.2, T+D)), outline, relief
 
+# ---------------- Modèle 3 : Bouclier de la Trinité (Scutum Fidei), relief ----------------
+def scutum(cx, cy, Rv=10.2, ro=3.3):
+    """triangle pointe en bas : 3 disques (anneaux) aux sommets + 1 au centre, reliés par les côtés et 3 rayons"""
+    V = [pol(0, 0, Rv, a) for a in (270, 30, 150)]
+    rings = [Point(*c).buffer(ro, 48).difference(Point(*c).buffer(ro-STROKE, 48)) for c in V + [(0, 0)]]
+    nodes = [Point(*c).buffer(ro-0.2, 48) for c in V + [(0, 0)]]
+    lines = [LineString([V[i], V[(i+1) % 3]]) for i in range(3)] + [LineString([(0, 0), v]) for v in V]
+    bars = unary_union([stroke(l) for l in lines]).difference(unary_union(nodes))
+    g = unary_union(rings + [bars])
+    x0, y0, x1, y1 = g.bounds
+    return affinity.translate(g, cx-(x0+x1)/2, cy-(y0+y1)/2)
+
+def model3():
+    s, (cx, cy), peaks = build(44, 42, 9)
+    outline = s.difference(hole())
+    hx, hy = cx, cy
+    logo = scutum(cx, cy + 9.5)
+    safe = s.buffer(-2.2).difference(Point(0, 0).buffer(LUG_R+2.0))
+    rays = ribs(hx, hy, 8.0, safe, peaks, 1.2, logo.buffer(2.6))
+    relief = unary_union([logo, rays]).intersection(s.buffer(-1.0))
+    print("logo dans le contour (marge 1 mm):", s.buffer(-1.0).contains(logo))
+    plate = ext(outline, 0, T)
+    return union(plate, ext(relief, T-0.2, T+D)), outline, relief
+
 if __name__ == "__main__":
     import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
     from matplotlib.patches import PathPatch
     from matplotlib.path import Path
-    m1, o1, g1 = model1(); m2, o2, g2 = model2()
-    for name, m in (("coquille_1_sobre", m1), ("coquille_2_traditionnelle", m2)):
+    m1, o1, g1 = model1(); m2, o2, g2 = model2(); m3, o3, g3 = model3()
+    for name, m in (("coquille_1_sobre", m1), ("coquille_2_traditionnelle", m2), ("coquille_3_bouclier_trinite", m3)):
         m.export(f"/home/user/python/coquilles/{name}.stl")
         print(name, "bbox mm:", np.round(m.extents, 2), "watertight:", m.is_watertight, "volume mm3:", round(m.volume, 1),
               "masse PLA ~g:", round(m.volume*1.24/1000, 2))
@@ -131,8 +155,8 @@ if __name__ == "__main__":
                 c = np.array(ring.coords); vs += list(c); cs += [Path.MOVETO] + [Path.LINETO]*(len(c)-2) + [Path.CLOSEPOLY]
             out.append(PathPatch(Path(vs, cs), **kw))
         return out
-    fig, axs = plt.subplots(1, 2, figsize=(12, 6.4))
-    for ax, o, g, t in ((axs[0], o1, g1, "1 • Coquille sobre (gravé)"), (axs[1], o2, g2, "2 • Coquille traditionnelle (relief)")):
+    fig, axs = plt.subplots(1, 3, figsize=(18, 6.4))
+    for ax, o, g, t in ((axs[0], o1, g1, "1 • Coquille sobre (gravé)"), (axs[1], o2, g2, "2 • Coquille traditionnelle (relief)"), (axs[2], o3, g3, "3 • Bouclier de la Trinité (relief)")):
         for p in patch(o, fc="#d8c08a", ec="#8a7340", lw=1): ax.add_patch(p)
         for p in patch(g, fc="#a88f58" if "gravé" in t else "#efe0b4", ec="none"): ax.add_patch(p)
         ax.set_xlim(-26, 26); ax.set_ylim(-9, 40); ax.set_aspect("equal"); ax.axis("off"); ax.set_title(t)
