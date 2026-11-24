@@ -4,19 +4,21 @@
 - `fusion360/mini_serre.py` : script Fusion 360 (4 pieces a plat, parametres en haut du fichier)
 - `arduino/serre/serre.ino` : code Nano (ventilation, arrosage, LED)
 
-## Pieces et estimation d'impression (PLA/PETG, buse 0.4)
-| Piece | Taille mm | ~Volume | ~Temps |
-|---|---|---|---|
-| Base_bac | 100x70x35 | 28 g | 40 min |
-| Toit_cadre | 103x73x7 | 7 g | 12 min |
-| Boitier_Nano | 48x28x18 | 6 g | 10 min |
-| Support_capteurs | 90x10x2.4 | 1 g | 3 min |
-Total ~ 65 min a plat (marge pour < 1h30). Verifier dans le slicer.
+## Pieces et temps d'impression (PrusaSlicer 2.7.2 CLI, mesure reelle)
+| Piece | Taille mm | Temps |
+|---|---|---|
+| Base_bac | 100x70x28 | 47 min |
+| Toit_cadre | 103x73x7 | 14 min |
+| Boitier_Nano | 48x28x18 | 13 min |
+| Support_capteurs | 90x10x2.4 | 5 min |
+Total ~ 79 min (< 1h30). Config: `stl/prusa_config.ini`, STL de test: `stl/*.stl`
+(generes par `stl/gen_stl.py`, sans les petits trous). Avec une base de 35 mm de haut
+et couche 0.28 le total montait a 98 min : trop long.
 
 ## Reglages slicer (Cura / PrusaSlicer)
-Couche 0.28 mm, 2 parois (1.6 mm cote base), remplissage 10 % gyroid, 80-100 mm/s,
+Couche 0.32 mm, 2 parois (1.6 mm cote base), remplissage 10 % gyroid, 80-100 mm/s,
 pas de support, pas de brim, ventilateur 100 %. Imprimer les 4 pieces sur le meme plateau.
-Si le total depasse 1h30 : couche 0.32 mm ou remplissage 5 %.
+Si ton imprimante est plus lente : remplissage 5 % ou hauteur de base 25 mm.
 
 ## Cablage Nano
 | Composant | Broche |

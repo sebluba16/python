@@ -3,7 +3,7 @@
 import adsk.core, adsk.fusion, traceback
 
 # ---- PARAMETRES (mm) ----
-L, W, H = 100.0, 70.0, 35.0     # base : longueur, largeur, hauteur
+L, W, H = 100.0, 70.0, 28.0     # base : longueur, largeur, hauteur
 WALL = 1.6                       # paroi = 4 lignes de 0.4
 FLOOR = 1.2                      # fond
 JEU = 0.3                        # jeu d'assemblage
