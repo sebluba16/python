@@ -3,7 +3,7 @@
 > Avant-projet. Les chiffres viennent de `navette_calc.py` (hypothèses modifiables en tête du fichier). Ce n'est **pas** un dossier de fabrication : voir « Réglementation et responsabilité ».
 
 ## 1. Besoin
-- Trajet : **700 m**, **10 fois par jour**. Hypothèse prudente : 10 aller-retour = **14 km/jour** (si ce sont 10 trajets simples : 7 km, tout est divisé par 2).
+- Trajet : **700 m**, **10 fois par jour**. **Confirmé : 10 aller-retour = 14 km/jour**, **sans voie publique** (site propre).
 - Usage : 2 personnes devant ; à l'arrière, **un blessé assis, jambe plâtrée tendue** (béquilles) ; déplacement lent, en site propre (collège).
 - Contraintes : sûreté des élèves, démarrage fiable à tout moment (urgence), entretien minimal, silence.
 - Conséquence clé : **usage très faible en énergie** (≈ 1 kWh/jour), mais **fiabilité et sécurité** priment sur la performance.
@@ -73,10 +73,10 @@ Masse en charge **590 kg** (340 kg à vide visé), CRR 0,012, CdA 1,0 m², rende
 **Recommandation** : acheter une base **robuste d'occasion** (voiturette 4 places (2 avant + banquette arrière) ou plateau 2 places, charge ≥ 300 kg) et faire **aménager l'arrière** (siège + repose-jambe + ceinture) par un carrossier, avec les élèves en projet d'accompagnement. On garde les points de sécurité structurels (freins, direction, châssis) d'un constructeur.
 
 ## 7. Réglementation et responsabilité (à vérifier)
-- **Site fermé (cour du collège)** : pas d'immatriculation, mais le chef d'établissement porte une **responsabilité** (sécurité, assurance, personnel formé). Prévenir l'assurance **avant** mise en service.
-- **Traversée de voie publique** : il faut un véhicule **homologué** (quadricycle L6e/L7e ou voiture) → exclut le fait-maison.
-- **Blessé** : une navette de collège ne remplace **pas** les secours : pour un blessé grave, appeler le **15**. L'usage décrit = blessé léger vers l'infirmerie/portail.
-- Fabrication artisanale : possible marquage CE de machine, vérification par organisme de contrôle. Contacter la collectivité/le rectorat. **Je n'ai pas vérifié les textes à jour** : à confirmer avec l'assurance et la collectivité propriétaire.
+- **Site propre, aucune voie publique** : pas d'immatriculation ni d'homologation routière. Cela rend possible une voiturette d'occasion aménagée, mais le **chef d'établissement reste responsable** (sécurité, assurance, conducteurs formés).
+- Prévenir l'**assurance** et la collectivité propriétaire **avant** mise en service ; conducteur = adulte désigné et formé ; consigne écrite (vitesse, plâtre, béquilles).
+- Un aménagement artisanal (siège, repose-jambe) engage la responsabilité de qui le réalise : faire contrôler (carrossier ou organisme de contrôle). **Je n'ai pas vérifié les textes à jour** : à confirmer.
+- Blessé grave : appeler le **15** ; la navette sert pour un blessé léger (plâtre) vers l'infirmerie ou le portail.
 
 ## 8. Risques principaux
 | Risque | Parade |
@@ -93,9 +93,8 @@ Masse en charge **590 kg** (340 kg à vide visé), CRR 0,012, CdA 1,0 m², rende
 3. **Aménagement arrière + sécurité** (6–8 sem.).
 4. **Essais à vide puis chargé** (2 sem.), formation conducteurs, procédure d'urgence écrite.
 
-## 10. Questions ouvertes (changent le dimensionnement)
-- 10 trajets = 10 aller-retour ou 10 trajets simples ?
+## 10. Questions encore ouvertes
 - Dénivelé réel et état du sol (bitume, gravier, pavés) ?
-- Largeur des passages / portes ; trottoirs à franchir ?
+- Largeur des passages / portes ; bordures à franchir ?
 - Qui conduit (adulte formé uniquement) ? Budget disponible ?
-- Une voie publique est-elle traversée ?
+- Plâtre jusqu'à la cuisse possible (plateau plus long) ?
