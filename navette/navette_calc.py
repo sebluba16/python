@@ -4,8 +4,8 @@ import math
 
 G, RHO = 9.81, 1.2
 # --- hypotheses ---
-M_VIDE   = 380      # kg, chassis alu/acier leger + moteur + batterie (cible)
-M_CHARGE = 2*80 + 80 + 20   # 2 occupants avant + blesse + brancard/equipement
+M_VIDE   = 340      # kg, chassis alu/acier leger + moteur + batterie (cible)
+M_CHARGE = 2*80 + 80 + 10   # 2 occupants avant + blesse assis jambe platree + bequilles
 M = M_VIDE + M_CHARGE
 CRR, CDA = 0.012, 1.0       # pneus 145/70-12 sur bitume ; CdA m2 (cabine ouverte/legere)
 V_MAX = 20/3.6              # m/s : limite campus
@@ -59,6 +59,6 @@ def main():
     # recharge opportuniste
     print(f"Recharge nuit : 0,8 kWh/jour avec chargeur 48 V 10 A (~0,5 kW) = {e_jour/500:.1f} h")
     # brancard
-    print("Freinage : decel 4 m/s2 depuis 20 km/h -> distance", round(V_MAX**2/(2*4),1), "m ; blesse arriere sangle (decel max 0,4 g)")
+    print("Freinage : decel 4 m/s2 depuis 20 km/h -> distance", round(V_MAX**2/(2*4),1), "m ; blesse assis, jambe calee (decel max 0,4 g)")
 
 main()
